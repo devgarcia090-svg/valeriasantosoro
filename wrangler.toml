@@ -1,0 +1,13 @@
+# Configuración de despliegue en Cloudflare Workers.
+#
+# La web es estática: no hay Worker, solo assets. Por eso no hay `main`.
+# El panel de Cloudflare ejecuta `npx wrangler deploy` y lee esto.
+#
+# `name` tiene que coincidir con el nombre del proyecto en Cloudflare.
+
+name = "valeriasantosoro"
+compatibility_date = "2026-09-12"
+
+[assets]
+# Se publica la raíz del repo. Lo que NO debe publicarse va en .assetsignore.
+directory = "./"
