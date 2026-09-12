@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Las páginas legales no aportan nada en buscadores y ya llevan
+# <meta name="robots" content="noindex, follow"> en su cabecera.
+
+Sitemap: https://valeriasantosoro.com/sitemap.xml

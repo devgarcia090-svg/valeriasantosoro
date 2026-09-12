@@ -51,6 +51,7 @@ var CONFIG = {
       telefono: '+34 691 932 411',
       mapa: 'https://maps.google.com/maps?q=37.7410142,-0.8511023&z=17&hl=es&output=embed',
       comoLlegar: 'https://www.google.com/maps/dir/?api=1&destination=37.7410142%2C-0.8511023',
+      pagina: 'compro-oro-los-alcazares.html',
       foto: 'assets/img/tienda-alcazares.jpg',
       fotoAlt: 'Fachada de la tienda de Valeria Santos Oro en Los Alcázares',
       horario: [
@@ -66,6 +67,7 @@ var CONFIG = {
       // PENDIENTE: este horario sigue siendo el de plantilla, sin confirmar.
       mapa: 'https://maps.google.com/maps?q=37.8630323,-0.7899997&z=17&hl=es&output=embed',
       comoLlegar: 'https://www.google.com/maps/dir/?api=1&destination=37.8630323%2C-0.7899997',
+      pagina: 'compro-oro-pilar-de-la-horadada.html',
       foto: '',            // PENDIENTE: falta una foto de esta tienda
       fotoAlt: '',
       horario: [
@@ -405,6 +407,14 @@ var CONFIG = {
         function (el) {
           if (sede.comoLlegar) el.setAttribute('href', sede.comoLlegar);
           else if (el.parentNode) el.parentNode.removeChild(el);   // sin enlace, fuera el botón
+        }
+      );
+
+      Array.prototype.forEach.call(
+        bloque.querySelectorAll('[data-sede-enlace="pagina"]'),
+        function (el) {
+          if (sede.pagina) el.setAttribute('href', sede.pagina);
+          else if (el.parentNode) el.parentNode.removeChild(el);
         }
       );
 

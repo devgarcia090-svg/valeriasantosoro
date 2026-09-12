@@ -22,7 +22,13 @@ assets/css/estilo.css    tokens de color y tipografía al principio del archivo
 assets/js/main.js        bloque CONFIG + formulario que abre WhatsApp
 assets/img/              fotos de relleno + logo.png
 favicon.png              monograma VS sobre negro
+robots.txt
+sitemap.xml
+compro-oro-los-alcazares.html
+compro-oro-pilar-de-la-horadada.html
 ```
+
+Todo lo publicable cuelga de `public/`. Ver la sección de despliegue.
 
 Abrir `index.html` en el navegador es suficiente para ver cambios. No hace falta
 servidor local salvo para probar el iframe del mapa.
@@ -225,11 +231,26 @@ horario desaparece el chip, es que se ha roto el formato.
 4. **Fotos propias**: las ocho de `assets/img/` son de relleno. Sustituirlas por
    fotos del mostrador, la balanza y las piezas, con los mismos nombres de archivo
    y sin tocar nada más.
-5. **Sedes**: son dos, Los Alcázares y Pilar de la Horadada. La portada ya las
-   lista las dos en "Dónde estamos" (`CONFIG.sedes`). Falta duplicar la portada en
-   una página por ciudad (`compro-oro-los-alcazares.html`,
-   `compro-oro-pilar-de-la-horadada.html`) con textos propios, y comprobar la ficha
-   de Google Business Profile de cada una. Ahí está el SEO.
+5. **Sedes**: hechas. `compro-oro-los-alcazares.html` y
+   `compro-oro-pilar-de-la-horadada.html`, enlazadas desde la portada (botón
+   "Ver esta tienda" en cada ficha, vía `CONFIG.sedes[].pagina`) y desde el pie.
+   Cada una lleva titular, entradilla, zona de influencia y preguntas propias:
+   si se copian entre sí, Google las trata como contenido duplicado y no
+   posicionan. Llevan también `JewelryStore` en JSON-LD, con dirección y
+   coordenadas.
+
+   **El horario de Pilar de la Horadada NO se declara en el JSON-LD** porque
+   sigue sin confirmar: publicar un horario sin verificar haría que Google lo
+   mostrara mal en las búsquedas. En cuanto se confirme, añadirlo.
+
+   **Aviso de mantenimiento**: el tablón de precios, la franja de reclamos y la
+   rejilla de categorías están duplicados en las tres páginas. No hay plantillas
+   porque no hay build. Si se toca uno, hay que tocar los tres.
+
+   Falta dar de alta o revisar la ficha de Google Business Profile de cada
+   tienda y enlazarla a su página.
+
+
 6. **Favicon y logo**: hechos. El monograma VS va en la cabecera de las cuatro
    páginas (`assets/img/logo.png`, con el fondo negro recortado para que sirva
    sobre marfil) y como favicon (`favicon.png`, 180×180 sobre negro cálido).
