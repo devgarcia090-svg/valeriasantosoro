@@ -19,7 +19,6 @@
   --marfil:     #f2ece0;   /* texto principal sobre negro */
   --tenue:      #9b8e7b;   /* texto secundario */
   --linea:      #2c241b;   /* separadores */
-  --aviso:      #ceb358;   /* marcador de los huecos legales */
 
   --serif: 'Marcellus', 'Optima', 'Palatino Linotype', Georgia, serif;
   --sans:  'Archivo', 'Helvetica Neue', Arial, sans-serif;
@@ -1070,16 +1069,13 @@ ul{ margin:0; padding:0; list-style:none; }
   color:var(--tenue);
 }
 
-/* Hueco pendiente de rellenar por el cliente: resaltado a propósito, para
-   que no se publique sin completar. */
-.hueco{
-  background:var(--aviso);
-  color:var(--negro);
-  padding:1px 6px;
-  border-radius:var(--radio);
-  font-weight:500;
-  box-decoration-break:clone;
-  -webkit-box-decoration-break:clone;
+/* Dato que aún no tenemos. Antes iba resaltado en amarillo chillón, pero
+   estas páginas las ve el cliente y parecían una obra a medio hacer. Ahora
+   es discreto; el recordatorio con el detalle va en un comentario HTML al
+   lado, que solo se ve en el código. */
+.pendiente{
+  color:var(--tenue);
+  font-style:italic;
 }
 
 /* ---------------------------------------------------------- Responsive -- */

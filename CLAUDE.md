@@ -56,7 +56,12 @@ demasiado aire, poco peso, y unas fotos de museo que no pegaban. Se invirtió.
 - **Oro**: `#ceb358` medio, `#ebc968` claro, `#9c8541` hondo. No son inventados:
   están muestreados del propio monograma VS de la clienta, para que la web haga
   juego con la marca. El `#a87f45` de la v2 era más bronce y desentonaba.
-- **Tipografías**: **Marcellus** para titulares (capital romana inscrita: el
+- **Tipografías**: se sirven **desde el propio dominio** (`public/assets/fuentes/`,
+  cargadas por `public/assets/css/fuentes.css`), no desde Google. Antes salían de
+  `fonts.googleapis.com`, lo que enviaba la IP de cada visitante a Google y
+  obligaba a declararlo como destinatario en la política de privacidad. Ambas
+  están bajo SIL Open Font License, que permite alojarlas. Solo se incluyen los
+  subconjuntos latin y latin-ext. **Marcellus** para titulares (capital romana inscrita: el
   registro de la moneda acuñada y el punzón de contraste) y **Archivo** para
   texto. Se quitó Bodoni Moda: en titulares largos se quedaba flaca.
   Por eso el h1 también se acortó a dos frases.
@@ -147,6 +152,21 @@ Ahora esa sección es una rejilla tipográfica con la ley de cada categoría
 (18 kt, 999, 925…), como una tabla de contrastes. Si algún día hay fotos propias
 del mostrador, se puede volver a meter imagen ahí.
 
+## Despliegue
+
+Cloudflare, proyecto **Workers** (no Pages): ejecuta `npx wrangler deploy` y lee
+el `wrangler.toml` de la raíz.
+
+**Se publica solo `./public`.** No mover la web a la raíz ni apuntar `directory`
+a `"./"`: el `CLAUDE.md` incluye el presupuesto y las condiciones de cobro, y
+acabaría servido en abierto. Hubo un primer intento con `.assetsignore` que se
+descartó porque wrangler decía leer 126 entradas de un repo de 21 archivos
+—estaba metiendo `.git`— y el contador no cambiaba al añadir exclusiones: no
+había forma de verificar que se respetaran. La separación por carpetas no
+depende de que nadie mantenga una lista.
+
+Para FTP, lo que se sube es el contenido de `public/`.
+
 ## Cuidado con el CSS
 
 `.contenedor` lleva `padding: 0 22px`. Cualquier elemento que sea a la vez
@@ -188,8 +208,20 @@ horario desaparece el chip, es que se ha roto el formato.
    está copiado literal. Las fechas del `<cite>` se dedujeron del "hace N meses"
    que mostraba Google el 12/09/2026, así que pueden bailar un mes. Si se añaden
    más, tienen que ser reales: inventarlas es publicidad engañosa.
-3. **Legales**: lo resaltado en amarillo en las tres páginas lo rellena el cliente
-   (razón social, NIF, domicilio, registro mercantil) y lo revisa su gestoría.
+3. **Legales**: ya no hay nada resaltado en amarillo. Lo llevaba y parecía una
+   obra a medio hacer justo en las páginas que ve el cliente. Ahora lo que falta
+   va en gris discreto (`.pendiente`) y el recordatorio con el detalle va en un
+   **comentario HTML al lado**, visible solo en el código.
+
+   Relleno ya: teléfono, dirección, el fuero (reescrito para no depender de una
+   ciudad) y **Destinatarios**, que nombra a Cloudflare como alojamiento, a
+   Google por el mapa incrustado y a WhatsApp, con la nota de transferencia
+   internacional a EE. UU.
+
+   Sigue faltando, y hay que pedírselo a la clienta: **razón social, NIF,
+   domicilio fiscal, datos registrales** (si es sociedad; si es autónoma esa
+   línea se borra) y el **correo electrónico**. Buscar `PENDIENTE:` en los
+   HTML para verlo todo. Revisión final de su gestoría.
 4. **Fotos propias**: las ocho de `assets/img/` son de relleno. Sustituirlas por
    fotos del mostrador, la balanza y las piezas, con los mismos nombres de archivo
    y sin tocar nada más.
