@@ -13,9 +13,12 @@ archivo y se actualiza toda la web.
 Ya están puestos el teléfono, el WhatsApp, las redes, las dos sedes y sus mapas.
 Falta rellenar:
 
-- `precios` y `fechaPrecios` — es la **cotización de mercado**, no el precio de
-  compra; el tablón lo dice así de claro. Repasarla cada semana: cambiar `oro24`
-  y recalcular el resto por su ley (0,916 · 0,750 · 0,585 · 0,375).
+- `precios` y `fechaPrecios` — **ya no hay que tocarlos**: una GitHub Action los
+  actualiza sola todos los días y publica el cambio. Es la cotización de
+  mercado, no el precio de compra, y el tablón lo dice así de claro.
+  Si algún día la Action falla, GitHub avisa por correo; el motivo suele ser
+  que la cotización ha dado un salto grande y el script se ha negado a
+  publicarlo sin que alguien lo mire.
 - `email` — confirmar el correo real.
 - `sedes[0].direccion` — falta el número de portal de Los Alcázares.
 - `sedes[].horario` — el de Los Alcázares sale de su ficha de Google; el de

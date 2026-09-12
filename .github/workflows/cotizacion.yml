@@ -1,0 +1,64 @@
+# Actualiza sola la cotización del oro y la plata, todos los días.
+#
+# Qué hace, por orden:
+#   1. Consulta la onza de oro y de plata, y el cambio dólar/euro.
+#   2. Escribe el valor por gramo de cada ley en CONFIG (main.js).
+#   3. Vuelca CONFIG al HTML, para que los buscadores lo lean sin JavaScript.
+#   4. Si algo ha cambiado, hace commit. Ese push dispara el build de
+#      Cloudflare y la web queda actualizada sin tocar nada.
+#
+# Si la cotización da un salto de más del 10 %, o una fuente devuelve algo
+# raro, el script falla A PROPÓSITO y no escribe nada: GitHub manda un aviso
+# por correo y se revisa a mano. Es preferible un tablón de ayer a un
+# tablón con un disparate.
+#
+# Para lanzarlo a mano: pestaña Actions > Cotización diaria > Run workflow.
+
+name: Cotización diaria
+
+on:
+  schedule:
+    # 07:00 UTC = 09:00 en España (verano) / 08:00 (invierno).
+    # GitHub puede retrasarlo si hay cola; para un tablón orientativo da igual.
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+# Sin esto el runner no puede hacer push
+permissions:
+  contents: write
+
+# Que no se solapen dos ejecuciones
+concurrency:
+  group: cotizacion
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Consultar la cotización y escribirla en CONFIG
+        run: node herramientas/actualizar-cotizacion.js
+
+      - name: Volcar CONFIG al HTML
+        run: node herramientas/sincronizar.js
+
+      - name: Publicar si ha cambiado algo
+        run: |
+          if git diff --quiet; then
+            echo "La cotización no ha variado. No hay nada que publicar."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Cotización del $(date +%d/%m/%Y)" \
+                     -m "Actualización automática desde api.gold-api.com y el cambio dólar/euro del BCE."
+          git push

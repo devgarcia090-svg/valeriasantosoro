@@ -40,11 +40,11 @@ del metal puro por gramo, no el precio que paga la tienda.** El importe real se
 fija tras comprobar la pureza y pesar cada pieza, y es menor.
 
 - Oro 24 kt (999): 120,52 €/g
-- Oro 22 kt (916): 110,40 €/g
-- Oro 18 kt (750): 90,39 €/g
-- Oro 14 kt (585): 70,50 €/g
-- Oro 9 kt (375): 45,20 €/g
-- Plata de ley (925): 1,65 €/g
+- Oro 22 kt (916): 110,51 €/g
+- Oro 18 kt (750): 90,48 €/g
+- Oro 14 kt (585): 70,57 €/g
+- Oro 9 kt (375): 45,24 €/g
+- Plata de ley (925): 1,66 €/g
 
 ## Contacto
 

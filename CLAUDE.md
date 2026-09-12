@@ -229,6 +229,32 @@ Ya pasó dos veces. Usar `padding-top` / `padding-bottom` por separado en esos c
    Falta el **email** (ver el punto de la LSSI) y confirmar el **horario de
    Pilar de la Horadada**, que sigue siendo el de plantilla.
 
+### La cotización se actualiza sola
+
+`.github/workflows/cotizacion.yml` se ejecuta todos los días a las 07:00 UTC
+(09:00 en España en verano). Consulta la onza de oro y de plata en
+`api.gold-api.com` y el cambio dólar/euro en `api.frankfurter.dev` —las dos
+gratuitas y sin clave—, escribe el valor por gramo de cada ley en `CONFIG`,
+ejecuta el sincronizador y hace commit. Ese push dispara el build de
+Cloudflare: la web se actualiza sin tocar nada.
+
+También se puede lanzar a mano desde la pestaña Actions, o en local con
+`node herramientas/actualizar-cotizacion.js`.
+
+**Guardas.** Esto escribe sin supervisión en la web de un cliente, así que el
+script se niega a publicar si algo huele mal: si una fuente falla, si el
+cambio dólar/euro sale de [0,5 – 1,5], si el oro se sale de 20–400 €/g, si la
+plata se sale de 0,2–10 €/g, o **si algún precio salta más de un 10 % respecto
+al día anterior**. En cualquiera de esos casos falla, no escribe nada y GitHub
+manda un aviso por correo. Un tablón de ayer es mejor que un tablón con un
+disparate. Si el salto es real (el oro se mueve de verdad), se actualiza
+`CONFIG` a mano y al día siguiente el automatismo sigue solo.
+
+Tras escribir, el script **relee `CONFIG` y comprueba clave por clave** que se
+guardó lo que tocaba. Esto viene de un fallo real: la primera versión iba con
+una expresión regular por clave que exigía coma final, y `plata925` —la
+última, sin coma— se quedaba sin actualizar en silencio.
+
 ### El tablón NO es una lista de precios de compra
 
 Esto es importante y se decidió a mitad del proyecto. `CONFIG.precios` contiene

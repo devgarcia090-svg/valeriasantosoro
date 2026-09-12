@@ -103,12 +103,12 @@ var CONFIG = {
      livepriceofgold.com y goldpricedata.com.                            */
 
   precios: {
-    oro24:    120.52,   // 999   — cotización del oro puro
-    oro22:    110.40,   // 916   = 120.52 × 0.916
-    oro18:     90.39,   // 750   = 120.52 × 0.750
-    oro14:     70.50,   // 585   = 120.52 × 0.585
-    oro9:      45.20,   // 375   = 120.52 × 0.375
-    plata925:   1.65    // plata de ley (onza a 64,43 $ ≈ 55,53 €)
+    oro24:     120.52,   // 999
+    oro22:     110.51,   // 916
+    oro18:      90.48,   // 750
+    oro14:      70.57,   // 585
+    oro9:       45.24,   // 375
+    plata925:    1.66    // plata de ley
   },
 
   // Fecha de la última actualización, como se quiere que se lea.
