@@ -1,13 +1,17 @@
-# Configuración de despliegue en Cloudflare Workers.
+# Despliegue en Cloudflare Workers.
 #
 # La web es estática: no hay Worker, solo assets. Por eso no hay `main`.
-# El panel de Cloudflare ejecuta `npx wrangler deploy` y lee esto.
+# El panel de Cloudflare ejecuta `npx wrangler deploy` y lee este archivo.
 #
 # `name` tiene que coincidir con el nombre del proyecto en Cloudflare.
+#
+# IMPORTANTE: se publica SOLO ./public. La documentación interna (CLAUDE.md,
+# LEEME.md) vive en la raíz, fuera de esa carpeta, y por eso no puede acabar
+# publicada por descuido. No mover la web a la raíz ni apuntar `directory`
+# a "./": el CLAUDE.md incluye el presupuesto y las condiciones de cobro.
 
 name = "valeriasantosoro"
 compatibility_date = "2026-09-12"
 
 [assets]
-# Se publica la raíz del repo. Lo que NO debe publicarse va en .assetsignore.
-directory = "./"
+directory = "./public"

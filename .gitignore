@@ -1,0 +1,3 @@
+# Caché local de wrangler
+.wrangler/
+node_modules/
