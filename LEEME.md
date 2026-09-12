@@ -52,20 +52,32 @@ En cuanto la clienta pase fotos suyas, sustituirlas: mismos nombres de archivo e
 `assets/img/` y no hay que tocar nada más. Las fotos propias del mostrador y de la
 balanza convierten mucho mejor que cualquier banco de imágenes.
 
-## 4. La calculadora
+## 4. IMPORTANTE: después de tocar CONFIG, ejecutar esto
+
+    node herramientas/sincronizar.js
+
+Vuelca los valores de `CONFIG` al HTML. Sin ese paso, el HTML sigue diciendo
+"+34 000 000 000": el visitante ve bien la web porque el JavaScript lo corrige
+al cargar, pero **Google y sobre todo los buscadores con IA leen el HTML en
+crudo** y se quedan con el dato falso.
+
+El script genera también el bloque de preguntas frecuentes en datos
+estructurados y el `llms.txt`.
+
+## 5. La calculadora
 
 Sale de `CONFIG.precios`: no hay nada que configurar aparte. Los pesos de los
 seis ejemplos están en el `index.html`, en los `data-peso` y `data-ley` de cada
 botón `.ejemplo`. Si se cambia un peso en el texto, cambiar también el `data-peso`.
 
-## 5. El menú de móvil
+## 6. El menú de móvil
 
 A partir de 900 px de ancho hacia abajo, el menú pasa a desplegable. Si se añade
 o quita un enlace del `<nav class="menu">` del `index.html`, hay que hacerlo
 también en las tres páginas legales, que llevan su propia copia apuntando a
 `index.html#seccion`.
 
-## 6. Siguientes pasos
+## 7. Siguientes pasos
 
 Duplicar la portada en una página por ciudad (`compro-oro-los-alcazares.html` y
 `compro-oro-pilar-de-la-horadada.html`) con textos propios, y comprobar la ficha de

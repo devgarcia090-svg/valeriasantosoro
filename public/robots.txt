@@ -1,7 +1,37 @@
+# Valeria Santos Oro — https://valeriasantosoro.com
+
+# Buscadores clásicos
 User-agent: *
+Allow: /
+
+# Rastreadores de los buscadores con IA. Se listan uno a uno a propósito:
+# el comodín de arriba ya los permite, pero dejarlo explícito evita que un
+# cambio futuro en la regla general los excluya sin querer, y deja constancia
+# de que se quiere aparecer en sus respuestas.
+#
+# Google-Extended no rastrea: controla si Gemini y los resúmenes con IA de
+# Google pueden usar el contenido. Si algún día no se quisiera, se cambia
+# aquí a Disallow.
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Bingbot
+User-agent: CCBot
 Allow: /
 
 # Las páginas legales no aportan nada en buscadores y ya llevan
 # <meta name="robots" content="noindex, follow"> en su cabecera.
+
+# Resumen del negocio en texto plano, para modelos de lenguaje:
+# https://valeriasantosoro.com/llms.txt
 
 Sitemap: https://valeriasantosoro.com/sitemap.xml

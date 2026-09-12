@@ -158,6 +158,50 @@ Ahora esa sección es una rejilla tipográfica con la ley de cada categoría
 (18 kt, 999, 925…), como una tabla de contrastes. Si algún día hay fotos propias
 del mostrador, se puede volver a meter imagen ahí.
 
+## SEO y buscadores con IA
+
+### El HTML servido tiene que traer los datos, no solo el JavaScript
+
+Este fue un fallo de bulto que estuvo en el proyecto mucho tiempo. La web toma
+sus datos de `CONFIG` y los escribe al cargar, pero **los rastreadores de las
+IA (GPTBot, ClaudeBot, PerplexityBot) no ejecutan JavaScript**: leían el HTML
+en crudo y veían `+34 000 000 000` y `Calle de ejemplo, 00`. Google renderiza,
+pero ellos no. La web era invisible para ellos justo en lo que importa.
+
+Se resuelve con `herramientas/sincronizar.js`:
+
+    node herramientas/sincronizar.js
+
+Vuelca `CONFIG` al HTML estático. **Hay que ejecutarlo siempre que se toque
+`CONFIG`** —precios, horarios, teléfono, sedes— y confirmar el resultado junto
+al cambio. `CONFIG` sigue siendo la única fuente de verdad; el HTML es su
+reflejo. El JavaScript sigue funcionando igual: al cargar reescribe los mismos
+valores, así que no hay conflicto.
+
+El mismo script genera además, para que nunca se desvíen del texto visible:
+
+- **`FAQPage` en JSON-LD** en cada página, a partir de sus `<details>`. Es lo
+  que alimenta las respuestas de los buscadores con IA y los resultados
+  enriquecidos de Google. Si alguien cambia una respuesta y el dato
+  estructurado no se regenera, el JSON-LD miente.
+- **`public/llms.txt`**, la convención de llmstxt.org: un resumen del negocio
+  en texto plano que un modelo puede leer de una vez.
+
+### Otros datos estructurados
+
+- Portada: `Organization` con las dos sedes.
+- Páginas de ciudad: `JewelryStore` con dirección y coordenadas.
+- El horario de Pilar de la Horadada **no se declara** mientras siga sin
+  confirmar: un horario erróneo en los resultados de búsqueda es peor que
+  ninguno.
+
+### robots.txt
+
+Lista uno a uno los rastreadores de IA. El comodín ya los permitiría, pero
+dejarlo explícito evita que un cambio futuro los excluya sin querer. Si alguna
+vez no se quisiera aparecer en los resúmenes con IA de Google, se cambia
+`Google-Extended` a `Disallow`.
+
 ## Despliegue
 
 Cloudflare, proyecto **Workers** (no Pages): ejecuta `npx wrangler deploy` y lee
