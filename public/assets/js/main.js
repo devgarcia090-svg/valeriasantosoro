@@ -103,17 +103,17 @@ var CONFIG = {
      livepriceofgold.com y goldpricedata.com.                            */
 
   precios: {
-    oro24:     119.07,   // 999
-    oro22:     109.18,   // 916
-    oro18:      89.39,   // 750
-    oro14:      69.73,   // 585
-    oro9:       44.70,   // 375
-    plata925:    1.51    // plata de ley
+    oro24:     119.58,   // 999
+    oro22:     109.65,   // 916
+    oro18:      89.78,   // 750
+    oro14:      70.03,   // 585
+    oro9:       44.89,   // 375
+    plata925:    1.53    // plata de ley
   },
 
   // Fecha de la última actualización, como se quiere que se lea.
   // Vacío = no se muestra la línea "Actualizado el ...".
-  fechaPrecios: '15/10/2026',
+  fechaPrecios: '16/10/2026',
 
   /* --- Textos del WhatsApp --------------------------------------------- */
 
