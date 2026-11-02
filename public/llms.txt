@@ -35,16 +35,16 @@
 
 ## Cotización del oro
 
-Actualizada el 31/10/2026. **Es el valor de mercado
+Actualizada el 02/11/2026. **Es el valor de mercado
 del metal puro por gramo, no el precio que paga la tienda.** El importe real se
 fija tras comprobar la pureza y pesar cada pieza, y es menor.
 
-- Oro 24 kt (999): 111,44 €/g
-- Oro 22 kt (916): 102,18 €/g
-- Oro 18 kt (750): 83,67 €/g
-- Oro 14 kt (585): 65,26 €/g
-- Oro 9 kt (375): 41,83 €/g
-- Plata de ley (925): 1,31 €/g
+- Oro 24 kt (999): 113,67 €/g
+- Oro 22 kt (916): 104,23 €/g
+- Oro 18 kt (750): 85,34 €/g
+- Oro 14 kt (585): 66,57 €/g
+- Oro 9 kt (375): 42,67 €/g
+- Plata de ley (925): 1,36 €/g
 
 ## Contacto
 
